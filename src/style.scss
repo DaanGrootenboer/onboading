@@ -1,0 +1,213 @@
+// import
+@import '../resources/assets/sass/settings.scss';
+@import '../resources/assets/sass/tools.scss';
+@import '../resources/assets/sass/layout.scss';
+
+$em-base: 16px;
+
+// Style
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #0f4390 0%, #e9167d 100%);
+    font-family: 'Open Sans', sans-serif;
+    padding: 20px;
+    margin: 0 auto;
+
+    @include media-query('tablet-sml') {
+        padding: 40px;
+    }
+
+    @include media-query('desktop-sml') {
+        padding: 60px;
+    }
+}
+
+.wrap {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.1),
+        0 4px 4px rgba(0, 0, 0, 0.1), 0 6px 8px rgba(0, 0, 0, 0.1),
+        0 8px 16px rgba(0, 0, 0, 0.1), 0 16px 32px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    max-width: 200px;
+    width: 15%;
+    z-index: 2;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+}
+
+.layout {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 60px;
+    grid-template-columns: 1fr;
+}
+
+.main {
+    position: relative;
+    overflow: hidden;
+    background: black;
+}
+
+.footer {
+    position: relative;
+    display: flex;
+    padding: 0 40px;
+    justify-content: space-between;
+    align-items: center;
+    background: color('primary');
+    grid-column: span 2;
+}
+
+.prev,
+.next {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    cursor: pointer !important;
+    appearance: none;
+    transition: all .2s;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1;
+    background: none;
+    color: white;
+
+    &:active,
+    &:focus {
+        text-decoration: none;
+    }
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    &::-moz-focus-inner {
+        border: 0;
+        padding: 0;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 12px;
+        height: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: url('/static/images/arrow-right.svg') center center / contain no-repeat;
+    }
+}
+
+.prev {
+    padding-left: 24px;
+
+    &::after {
+        left: 0;
+        background-image: url('/static/images/arrow-left.svg');
+    }
+}
+
+.next {
+    padding-right: 24px;
+
+    &::after {
+        right: 0;
+    }
+}
+
+.vehicle {
+    position: absolute;
+    z-index: 1;
+    bottom: 1%;
+    left: 50%;
+    height: 24%;
+    transform: translateX(-50%);
+    transition: all 1s ease-in-out;
+
+    &.is-init {
+        left: 20%;
+    }
+
+    .wheel {
+        transform-box: fill-box;
+        transform-origin: center;
+
+        &.is-moving {
+            animation: rotating 1s ease-in-out forwards;
+        }
+    }
+}
+
+#map {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: all 1s ease-in-out;
+    height: 100%;
+    width: 100%;
+
+    .bg {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 100%;
+        max-width: none;
+    }
+
+    .sign {
+        position: absolute;
+        bottom: 12%;
+        left: 80%;
+        transform: translateX(-50%);
+        height: 30%;
+    }
+}
+
+// Spacings
+.mb0-last {
+    & > :last-child {
+        margin-bottom: 0 !important;
+    }
+}
+
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(.5, .5);
+        opacity: 1;
+    }
+    to {
+        transform: scale(2.5, 2.5);
+        opacity: 0;
+    }
+}

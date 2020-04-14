@@ -1,0 +1,12 @@
+//---------------------------------------------------------
+//	#Interaction (layout)
+//---------------------------------------------------------
+.is-hidden {
+	display: none !important;
+}
+
+.is-clickarea {
+	&:hover {
+		cursor: pointer;
+	}
+}
